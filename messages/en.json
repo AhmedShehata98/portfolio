@@ -1,0 +1,127 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "gallery": "Gallery",
+    "timeline": "Timeline",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Ahmed Shehata",
+    "subtitle": "Frontend Web Developer",
+    "location": "Alexandria, Egypt",
+    "description": "Passionate frontend developer specializing in modern web technologies and creating exceptional user experiences",
+    "cta": "Explore My Work",
+    "contact": "Get In Touch",
+    "techStack": "Tech Stack"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Passionate Developer & Problem Solver",
+    "description": "I'm Ahmed Shehata, a frontend web developer based in Alexandria, Egypt. I specialize in creating modern, responsive web applications using cutting-edge technologies.",
+    "experience": "2+ Years Experience",
+    "projects": "15+ Projects Completed",
+    "clients": "Happy Clients",
+    "skills": "skills",
+    "passion": "My passion lies in transforming ideas into digital reality through clean, efficient code and intuitive user interfaces."
+  },
+  "gallery": {
+    "title": "Featured Projects",
+    "subtitle": "Showcasing My Best Work",
+    "viewProject": "View Project",
+    "filter": {
+      "all": "all",
+      "web": "web",
+      "mobile": "mobile",
+      "design": "design"
+    },
+    "liveDemo": "live demo",
+    "projects": {
+      "ecommerce": {
+        "title": "E-Commerce Platform",
+        "description": "Modern e-commerce solution built with React and Node.js",
+        "tech": ["React", "Node.js", "MongoDB", "Tailwind CSS"]
+      },
+      "dashboard": {
+        "title": "Analytics Dashboard",
+        "description": "Real-time analytics dashboard with interactive charts",
+        "tech": ["Vue.js", "Express", "Chart.js", "PostgreSQL"]
+      },
+      "mobile": {
+        "title": "Mobile App Landing",
+        "description": "Responsive landing page for mobile application",
+        "tech": ["Next.js", "TypeScript", "Framer Motion"]
+      }
+    }
+  },
+  "timeline": {
+    "title": "My Journey",
+    "subtitle": "Professional Timeline",
+    "present": "present",
+    "items": {
+      "2024": {
+        "title": "Senior Frontend Developer",
+        "company": "Tech Solutions Inc",
+        "description": "Leading frontend development team, implementing modern web solutions using React, Next.js, and TypeScript."
+      },
+      "2023": {
+        "title": "Frontend Developer",
+        "company": "Digital Agency",
+        "description": "Developed responsive web applications and collaborated with design teams to create user-friendly interfaces."
+      },
+      "2022": {
+        "title": "Junior Developer",
+        "company": "Startup Hub",
+        "description": "Started my professional journey, learned modern web technologies and contributed to various client projects."
+      },
+      "2021": {
+        "title": "Web Development Bootcamp",
+        "company": "Code Academy",
+        "description": "Intensive training in frontend technologies including HTML, CSS, JavaScript, and modern frameworks."
+      }
+    }
+  },
+  "contact": {
+    "title": "Let's Work Together",
+    "subtitle": "Ready to bring your ideas to life",
+    "form": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "subject": "Subject",
+      "message": "Your Message",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "success": "Message sent successfully!",
+      "error": "Failed to send message. Please try again.",
+      "service": "service needed"
+    },
+    "services": {
+      "webdev": "web development",
+      "mobile": "mobile development",
+      "design": "designer",
+      "consulting": "consulting"
+    },
+    "footer": {
+      "social": "Follow me on social media"
+    },
+    "info": {
+      "email": "ahmed.shehata@example.com",
+      "phone": "+20 123 456 7890",
+      "location": "Alexandria, Egypt"
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "social": "Follow me on social media"
+  },
+  "language": {
+    "toggle": "Toggle Language",
+    "english": "English",
+    "arabic": "العربية"
+  },
+  "theme": {
+    "toggle": "Toggle Theme",
+    "light": "Light Mode",
+    "dark": "Dark Mode"
+  }
+}
