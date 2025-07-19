@@ -8,12 +8,15 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import LanguageToggle from "@/components/LanguageToggle";
 import ThemeToggle from "@/components/ThemeToggle";
+import useSectionObserver from "@/hook/useSectionObserver";
+import useCurrentHash from "@/hook/useCurrentHash";
 
 export default function Header() {
   const t = useTranslations("nav");
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const hash = useCurrentHash();
 
   const navItems = [
     { href: "/#", label: t("home") },
@@ -24,7 +27,7 @@ export default function Header() {
   ];
 
   const isActive = (href: string) => {
-    if (href === "/") {
+    if (hash === href) {
       return pathname === "/" || pathname === "/en" || pathname === "/ar";
     }
     return pathname.includes(href);
@@ -39,13 +42,17 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useSectionObserver();
+
   return (
-    <header>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? "glass-surface shadow-lg" : "bg-transparent"
-        }`}
-      >
+    <header
+      className={`fixed top-0 left-0 right-0 rounded-b-xl z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-primary/15 shadow-xl backdrop-blur-lg"
+          : "bg-transparent"
+      }`}
+    >
+      <nav>
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}

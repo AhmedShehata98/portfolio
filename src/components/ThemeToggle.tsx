@@ -35,24 +35,33 @@ export default function ThemeToggle() {
         <Button
           variant="outline"
           size="sm"
-          className="btn-outlined"
+          className="btn-outlined cursor-pointer hover:!bg-primary"
           aria-label={t("toggle")}
         >
           {getThemeIcon()}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="glass-surface border-outline-variant">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          <Sun className="h-4 w-4 mr-2" />
-          {t("light")}
+        <DropdownMenuItem
+          className="cursor-pointer group"
+          onClick={() => setTheme("light")}
+        >
+          <Sun className="group-hover:text-primary h-4 w-4 mr-2" />
+          <p className="group-hover:text-primary">{t("light")}</p>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          <Moon className="h-4 w-4 mr-2" />
-          {t("dark")}
+        <DropdownMenuItem
+          className="cursor-pointer group"
+          onClick={() => setTheme("dark")}
+        >
+          <Moon className="group-hover:text-primary h-4 w-4 mr-2" />
+          <p className="group-hover:text-primary">{t("dark")}</p>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          <Monitor className="h-4 w-4 mr-2" />
-          System
+        <DropdownMenuItem
+          className="cursor-pointer group"
+          onClick={() => setTheme("system")}
+        >
+          <Monitor className="group-hover:text-primary h-4 w-4 mr-2" />
+          <p className="group-hover:text-primary">System</p>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

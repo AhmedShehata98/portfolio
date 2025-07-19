@@ -10,11 +10,11 @@
   --background: hsl(195, 29%, 95%);
   --foreground: hsl(222 47% 11%);
 
-  --primary: hsl(216, 87%, 50%);
+  --primary: hsl(164, 97%, 29%);
   --primary-foreground: hsl(0 0% 100%);
-  --primary-variant: hsl(222 80% 60%);
-  --primary-container: hsl(222 100% 95%);
-  --primary-container-foreground: hsl(222 100% 10%);
+  --primary-variant: hsl(185, 96%, 28%);
+  --primary-container: hsl(165, 100%, 13%);
+  --primary-container-foreground: hsl(222 100% 90%);
 
   --secondary: hsl(290 60% 50%);
   --secondary-foreground: hsl(0 0% 100%);
@@ -72,10 +72,10 @@
     --background: hsl(222 47% 5%);
     --foreground: hsl(0 0% 98%);
 
-    --primary: hsl(222 100% 65%);
+    --primary: hsl(164, 34%, 44%);
     --primary-foreground: hsl(0 0% 100%);
-    --primary-variant: hsl(222 80% 75%);
-    --primary-container: hsl(222 100% 25%);
+    --primary-variant: hsl(185, 81%, 30%);
+    --primary-container: hsl(165, 100%, 13%);
     --primary-container-foreground: hsl(222 100% 90%);
 
     --secondary: hsl(290 60% 65%);
