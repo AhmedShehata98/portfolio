@@ -35,6 +35,7 @@
       "mobile": "mobile",
       "design": "design"
     },
+    "no_projects": "No projects to display at the moment.",
     "liveDemo": "live demo",
     "projects": {
       "ecommerce": {
@@ -112,7 +113,9 @@
   },
   "footer": {
     "rights": "All rights reserved.",
-    "social": "Follow me on social media"
+    "social": "Follow me on social media",
+    "description": "Frontend Web Developer from Alexandria, Egypt. Creating modern web experiences with React, Next.js, and Vue.js.",
+    "name": "Ahmed Shehata"
   },
   "language": {
     "toggle": "Toggle Language",

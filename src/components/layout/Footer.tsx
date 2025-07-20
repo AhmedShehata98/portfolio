@@ -39,11 +39,10 @@ export default function Footer() {
             {/* Brand */}
             <div>
               <h3 className="text-2xl font-bold text-gradient-primary mb-4">
-                Ahmed Shehata
+                {t("footer.name")}
               </h3>
-              <p className="material-body-medium text-muted-foreground max-w-sm">
-                Frontend Web Developer from Alexandria, Egypt. Creating modern
-                web experiences with React, Next.js, and Vue.js.
+              <p className="text-base font-normal leading-relaxed tracking-wide material-body-medium text-muted-foreground max-w-sm">
+                {t("footer.description")}
               </p>
             </div>
 
@@ -108,11 +107,11 @@ export default function Footer() {
           <div className="pt-8 border-t border-outline-variant">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="material-body-medium text-muted-foreground mb-4 md:mb-0">
-                © {currentYear} Ahmed Shehata. {t("footer.rights")}.
+                © {currentYear} {t("footer.rights")} Ahmed Shehata.
               </p>
               <div className="flex items-center gap-2 text-muted-foreground">
-                <p className="material-body-medium">Made by</p>
                 <p className="material-body-medium">ahmed shehata</p>
+                <p className="material-body-medium">Made by</p>
               </div>
             </div>
           </div>

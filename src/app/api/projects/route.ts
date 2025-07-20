@@ -4,7 +4,7 @@ export const GET = async (req: Request) => {
   const { searchParams } = new URL(req.url);
   const page = searchParams.get("page") || "1";
   const limit = searchParams.get("limit") || "10";
-  const category = searchParams.get("category") || "all";
+  // const category = searchParams.get("category") || "all";
 
   const { data, error } = await supabase
     .from("projects")
@@ -13,9 +13,9 @@ export const GET = async (req: Request) => {
     .order("created_at", { ascending: false })
     .limit(Number(limit));
 
-  if (category !== "all") {
-    supabase.eq("category_id", category === "all" ? undefined : category);
-  }
+  // if (category !== "all") {
+  //   (supabase as any).eq("category_id", category === "all" ? undefined : category);
+  // }
 
   if (error) {
     return new Response(error.message, { status: 400 });
