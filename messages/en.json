@@ -19,11 +19,14 @@
     "title": "About Me",
     "subtitle": "Passionate Developer & Problem Solver",
     "description": "I'm Ahmed Shehata, a frontend web developer based in Alexandria, Egypt. I specialize in creating modern, responsive web applications using cutting-edge technologies.",
-    "experience": "2+ Years Experience",
-    "projects": "15+ Projects Completed",
-    "clients": "Happy Clients",
+    "experience": "Over {experience} years of experience",
+    "projects": "More than {projects} completed projects",
+    "clients": "{clients} satisfied clients",
     "skills": "skills",
-    "passion": "My passion lies in transforming ideas into digital reality through clean, efficient code and intuitive user interfaces."
+    "passion": "My passion lies in transforming ideas into digital reality through clean, efficient code and intuitive user interfaces.",
+    "name": "Ahmed Shehata",
+    "role": "Frontend Web Developer",
+    "location": "Alexandria, Egypt"
   },
   "gallery": {
     "title": "Featured Projects",
@@ -85,6 +88,9 @@
   "contact": {
     "title": "Let's Work Together",
     "subtitle": "Ready to bring your ideas to life",
+    "email": "Email Address",
+    "phone": "phone",
+    "location": "location",
     "form": {
       "name": "Full Name",
       "email": "Email Address",
@@ -95,6 +101,10 @@
       "success": "Message sent successfully!",
       "error": "Failed to send message. Please try again.",
       "service": "service needed"
+    },
+    "decorativeCard": {
+      "title": " Let&apos;s Build Something Amazing Together",
+      "description": "I&apos;m always excited to work on new projects and help bring your ideas to life. Whether you need a web application, mobile app, or just want to discuss your project, I&apos;d love to hear from you."
     },
     "services": {
       "webdev": "web development",

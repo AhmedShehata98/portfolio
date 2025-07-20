@@ -8,15 +8,13 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import LanguageToggle from "@/components/LanguageToggle";
 import ThemeToggle from "@/components/ThemeToggle";
-import useSectionObserver from "@/hook/useSectionObserver";
-import useCurrentHash from "@/hook/useCurrentHash";
+import useActiveHash from "@/hook/useActiveHash";
 
 export default function Header() {
   const t = useTranslations("nav");
-  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const hash = useCurrentHash();
+  const MobileNavigationMenuRef = React.useRef<HTMLDivElement>(null);
 
   const navItems = [
     { href: "/#", label: t("home") },
@@ -26,11 +24,10 @@ export default function Header() {
     { href: "#contact", label: t("contact") },
   ];
 
+  const { activeHash } = useActiveHash();
+
   const isActive = (href: string) => {
-    if (hash === href) {
-      return pathname === "/" || pathname === "/en" || pathname === "/ar";
-    }
-    return pathname.includes(href);
+    return activeHash === href;
   };
 
   useEffect(() => {
@@ -42,7 +39,22 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useSectionObserver();
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    window.addEventListener("click", (e) => {
+      console.log((e.target as HTMLElement).id);
+      if ((e.target as HTMLElement).id === "mobile-menu-button") {
+        setIsMenuOpen((prev) => !prev);
+        return;
+      }
+      if (
+        MobileNavigationMenuRef.current &&
+        !MobileNavigationMenuRef.current.contains(e.target as Node)
+      ) {
+        setIsMenuOpen(false);
+      }
+    });
+  }, []);
 
   return (
     <header
@@ -92,6 +104,7 @@ export default function Header() {
                 className="md:hidden btn-outlined"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label="Toggle menu"
+                id="mobile-menu-button"
               >
                 {isMenuOpen ? (
                   <X className="h-5 w-5" />
@@ -104,7 +117,10 @@ export default function Header() {
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <div className="md:hidden mt-4 p-4 glass-surface rounded-lg border border-outline-variant animate-fade-in-scale">
+            <div
+              ref={MobileNavigationMenuRef}
+              className="md:hidden mt-4 p-4 glass-surface rounded-lg border border-outline-variant animate-fade-in-scale"
+            >
               <div className="flex flex-col space-y-4">
                 {navItems.map((item) => (
                   <Link

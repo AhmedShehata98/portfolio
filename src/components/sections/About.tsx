@@ -21,9 +21,9 @@ export default function AboutSection() {
   ];
 
   const stats = [
-    { value: "5+", label: t("experience") },
-    { value: "50+", label: t("projects") },
-    { value: "30+", label: t("clients") },
+    { value: "2+", label: t("experience", { experience: "2+" }) },
+    { value: "9+", label: t("projects", { projects: "9+" }) },
+    { value: "10+", label: t("clients", { clients: "10+" }) },
   ];
 
   return (
@@ -98,13 +98,13 @@ export default function AboutSection() {
                   />
                 </div>
                 <h3 className="material-headline-small mb-2 text-primary">
-                  Ahmed Shehata
+                  {t("name")}
                 </h3>
                 <p className="material-body-medium text-muted-foreground mb-2">
-                  Frontend Web Developer
+                  {t("role")}
                 </p>
                 <p className="material-body-small text-muted-foreground">
-                  Alexandria, Egypt
+                  {t("location")}
                 </p>
               </Card>
             </div>

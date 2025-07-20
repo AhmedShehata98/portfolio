@@ -82,10 +82,10 @@ function TimelineCard({
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
             <div>
-              <h3 className="text-xl md:text-2xl text-start font-medium leading-snug tracking-normal text-primary mb-1">
+              <h3 className="material-headline-large text-primary text-start mb-1">
                 {item.job_title}
               </h3>
-              <p className="text-sm md:text-base font-normal leading-relaxed tracking-wide text-foreground">
+              <p className="material-body-medium text-start font-normal leading-relaxed tracking-wide text-foreground">
                 {item.company_name}
               </p>
             </div>
@@ -110,13 +110,13 @@ function TimelineCard({
           {/* Location */}
           <div className="flex items-center gap-3 text-muted-foreground mb-4">
             <MapPin className="w-4 h-4" />
-            <span className="text-sm md:text-base font-normal leading-relaxed tracking-wide text-foreground">
+            <span className="w-full material-label-medium text-start text-muted-foreground">
               {item.location}
             </span>
           </div>
 
           {/* Description */}
-          <p className="text-sm md:text-base font-normal leading-relaxed tracking-wide text-foreground mb-4 text-start">
+          <p className="material-body-small md:text-base font-normal leading-relaxed tracking-wide text-foreground mb-4 text-start">
             {item.description}
           </p>
 

@@ -30,7 +30,7 @@ export default function HeroSection() {
           </div>
 
           {/* Main Title */}
-          <h1 className="material-display-large text-2xl md:text-5xl font-semibold mb-4 text-gradient-primary animate-fade-in-up stagger-1">
+          <h1 className="material-display-large mb-4 text-gradient-primary animate-fade-in-up stagger-1">
             {tHero("title")}
           </h1>
 
@@ -105,9 +105,7 @@ export default function HeroSection() {
               </div>
             </div>
             <div className="text-center">
-              <div className="material-display-small text-primary mb-2">
-                15+
-              </div>
+              <div className="material-display-small text-primary mb-2">9+</div>
               <div className="material-body-medium text-muted-foreground">
                 {tAbout("projects")}
               </div>
@@ -122,7 +120,7 @@ export default function HeroSection() {
             </div>
             <div className="text-center">
               <div className="material-display-small text-primary mb-2">
-                100%
+                77%
               </div>
               <div className="material-body-medium text-muted-foreground">
                 Success Rate

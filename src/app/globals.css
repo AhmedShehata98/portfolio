@@ -170,6 +170,42 @@
   .app-container {
     @apply w-full px-6 md:max-w-[720px] lg:max-w-[992px] xl:max-w-[1080px] 2xl:max-w-[1280px] mx-auto 2xl:px-8 text-center;
   }
+  .glass-surface {
+    @apply bg-background/80 backdrop-blur-md border border-white/20 shadow-lg rounded-lg;
+  }
+  .text-gradient-primary {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container;
+  }
+  .material-label-small {
+    @apply text-[10px] leading-[14px] font-medium tracking-[0.0455em] sm:text-[11px] sm:leading-[16px];
+  }
+  .material-body-medium {
+    @apply text-[13px] leading-[18px] font-normal tracking-[0.01786em] sm:text-[14px] sm:leading-[20px];
+  }
+  .material-label-large {
+    @apply text-[15px] leading-[22px] font-normal tracking-[0.03125em] sm:text-[16px] sm:leading-[24px];
+  }
+  .material-body-large {
+    @apply text-[15px] leading-[22px] font-normal tracking-[0.03125em] sm:text-[16px] sm:leading-[24px];
+  }
+  .material-display-small {
+    @apply text-[28px] leading-[36px] font-normal tracking-normal sm:text-[32px] sm:leading-[40px] md:text-[36px] md:leading-[44px];
+  }
+  .material-display-medium {
+    @apply text-[32px] leading-[40px] rtl:leading-relaxed font-normal tracking-normal sm:text-[38px] sm:leading-[46px] md:text-[45px] md:leading-[52px];
+  }
+  .material-display-large {
+    @apply text-[32px] leading-[40px] font-normal tracking-normal sm:text-[45px] sm:leading-[52px] sm:tracking-normal md:text-[57px] md:leading-[64px] md:tracking-[-0.00438em];
+  }
+  .material-headline-small {
+    @apply text-[20px] leading-[28px] font-normal tracking-normal sm:text-[22px] sm:leading-[30px] md:text-[24px] md:leading-[32px];
+  }
+  .material-headline-medium {
+    @apply text-[22px] leading-[30px] font-normal tracking-normal sm:text-[26px] sm:leading-[34px] md:text-[28px] md:leading-[36px];
+  }
+  .material-headline-large {
+    @apply text-[24px] leading-[32px] font-normal tracking-normal sm:text-[28px] sm:leading-[36px] md:text-[32px] md:leading-[40px];
+  }
 }
 
 /* Animations */

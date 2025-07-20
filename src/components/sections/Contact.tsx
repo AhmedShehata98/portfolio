@@ -24,6 +24,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 export default function ContactSection() {
   const t = useTranslations("contact");
@@ -38,18 +39,21 @@ export default function ContactSection() {
   const contactInfo = [
     {
       icon: <Mail className="w-5 h-5" />,
-      label: "Email",
-      value: "ahmed.shehata@example.com",
+      label: t("email"),
+      value: "hmedshehataq98@gmail.com",
+      href: "mailto:hmedshehataq98@gmail.com",
     },
     {
       icon: <Phone className="w-5 h-5" />,
-      label: "Phone",
-      value: "+20 xxx xxx xxxx",
+      label: t("phone"),
+      value: "+201559021655",
+      href: "tel:+201559021655",
     },
     {
       icon: <MapPin className="w-5 h-5" />,
-      label: "Location",
+      label: t("location"),
       value: "Alexandria, Egypt",
+      href: "https://goo.gl/maps/Alexandria, Egypt",
     },
   ];
 
@@ -127,28 +131,32 @@ export default function ContactSection() {
               {/* Contact Details */}
               <div className="space-y-6">
                 {contactInfo.map((info) => (
-                  <div key={info.label} className="flex items-center gap-4">
+                  <Link
+                    key={info.label}
+                    className="flex items-center gap-4"
+                    href={info.href}
+                  >
                     <div className="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center text-primary-container-foreground">
                       {info.icon}
                     </div>
                     <div>
-                      <p className="material-label-large text-primary">
+                      <p className="material-label-large text-start text-primary">
                         {info.label}
                       </p>
                       <p className="material-body-medium text-foreground">
                         {info.value}
                       </p>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
 
               {/* Social Links */}
               <div>
-                <h3 className="material-headline-small mb-6 text-primary">
+                <h3 className="material-headline-small mb-6 md:text-start text-primary">
                   {t("footer.social")}
                 </h3>
-                <div className="flex gap-4">
+                <div className="flex gap-4 max-md:justify-center">
                   {socialLinks.map((social) => (
                     <Button
                       key={social.label}
@@ -166,13 +174,10 @@ export default function ContactSection() {
               {/* Decorative Card */}
               <Card className="card-elevated p-8 bg-gradient-hero">
                 <h3 className="material-headline-small mb-4 text-primary">
-                  Let&apos;s Build Something Amazing Together
+                  {t("decorativeCard.title")}
                 </h3>
                 <p className="material-body-medium text-foreground">
-                  I&apos;m always excited to work on new projects and help bring
-                  your ideas to life. Whether you need a web application, mobile
-                  app, or just want to discuss your project, I&apos;d love to
-                  hear from you.
+                  {t("decorativeCard.description")}
                 </p>
               </Card>
             </div>

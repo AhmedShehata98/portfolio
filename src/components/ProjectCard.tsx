@@ -14,7 +14,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <Card
       key={project.id}
-      className="card-elevated hover-lift group pt-0 overflow-hidden animate-fade-in-up"
+      className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border border-gray-200 dark:border-gray-700 py-6 shadow-sm group pt-0 overflow-hidden animate-fade-in-up"
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       {/* Project Image */}
