@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 
 function useCurrentHash() {
-  const [hash, setHash] = useState(window.location.hash);
+  const [hash, setHash] = useState(
+    typeof window !== "undefined" ? window.location.hash : "#"
+  );
 
   useEffect(() => {
     const handleHashChange = () => {

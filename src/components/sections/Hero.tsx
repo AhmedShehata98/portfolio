@@ -30,12 +30,12 @@ export default function HeroSection() {
           </div>
 
           {/* Main Title */}
-          <h1 className="material-display-large mb-4 text-gradient-primary animate-fade-in-up stagger-1">
+          <h1 className="material-display-large text-2xl md:text-5xl font-semibold mb-4 text-gradient-primary animate-fade-in-up stagger-1">
             {tHero("title")}
           </h1>
 
           {/* Subtitle */}
-          <p className="material-headline-medium mb-6 text-muted-foreground animate-fade-in-up stagger-2">
+          <p className="material-headline-medium mb-1 text-muted-foreground animate-fade-in-up stagger-2">
             {tHero("subtitle")}
           </p>
 
