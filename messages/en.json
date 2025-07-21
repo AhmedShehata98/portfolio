@@ -94,8 +94,9 @@
     "form": {
       "name": "Full Name",
       "email": "Email Address",
-      "subject": "Subject",
+      "subject": "Subject ",
       "message": "Your Message",
+      "emailText": "You Got a new message from your portfolio contact form /\n name: {name} /\n email: {email} service: {service} /\n message: {message}",
       "send": "Send Message",
       "sending": "Sending...",
       "success": "Message sent successfully!",

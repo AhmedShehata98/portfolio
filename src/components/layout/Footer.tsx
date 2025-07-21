@@ -90,7 +90,7 @@ export default function Footer() {
                     key={social.label}
                     variant="outline"
                     size="sm"
-                    className="btn-outlined w-12 h-12 p-0 hover-lift"
+                    className="btn-outlined w-12 h-12 p-0 hover-lift hover:!bg-primary"
                     asChild
                     aria-label={social.label}
                   >

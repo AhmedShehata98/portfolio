@@ -28,7 +28,7 @@ export default function GoTopBtn() {
   return (
     <button
       className={clsx(
-        "fixed bottom-4 right-4 p-3 lg:p-5 bg-primary text-white rounded-full shadow-xl hover:bg-blue-600 transition-all",
+        "fixed bottom-4 right-4 p-3 lg:p-5 bg-primary text-white rounded-full shadow-xl hover:brightness-90 cursor-pointer transition-all",
         !isVisible && "opacity-0 translate-y-5 pointer-events-none"
       )}
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

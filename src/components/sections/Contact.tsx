@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/select";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { toast } from "sonner";
 
 export default function ContactSection() {
   const t = useTranslations("contact");
@@ -86,26 +87,80 @@ export default function ContactSection() {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
+  const sendContactForm = async ({
+    formData,
+    cb,
+  }: {
+    formData: {
+      name: string;
+      email: string;
+      service: string;
+      message: string;
+    };
+    cb: (success: boolean, error?: unknown) => void;
+  }) => {
+    try {
+      const res = await fetch("/api/contact-us", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          service: formData.service,
+          message: formData.message,
+        }),
+      });
+      if (!res.ok) {
+        const errorData = await res.json();
+        const parsedError = JSON.parse(errorData.error);
+        cb(false, parsedError?.[0]?.message);
+        return;
+      }
+      const data = await res.json();
+      if (data.success) {
+        cb(true);
+      } else {
+        cb(false, data.error);
+      }
+    } catch (error) {
+      console.error("Error sending contact form:", error);
+      cb(false, error);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setIsSubmitting(true);
+      await sendContactForm({
+        formData,
+        cb: async (success, error) => {
+          if (success) {
+            toast.success(t("form.success"));
 
-      // toast({
-      //   title: t('form.success'),
-      //   description: "I'll get back to you soon!",
-      // });
+            setFormData({
+              name: "",
+              email: "",
+              service: "",
+              message: "",
+            });
+          } else {
+            toast.error(
+              error && typeof error === "string" ? error : t("form.error")
+            );
+          }
+        },
+      });
+      setIsSubmitting(false);
 
       setFormData({ name: "", email: "", service: "", message: "" });
     } catch (error) {
-      // toast({
-      //   title: t('form.error'),
-      //   description: "Please try again later.",
-      //   variant: "destructive",
-      // });
+      console.error("Error submitting contact form:", error);
+      toast.error(t("form.error"));
     } finally {
       setIsSubmitting(false);
     }
@@ -162,7 +217,7 @@ export default function ContactSection() {
                       key={social.label}
                       variant="outline"
                       size="sm"
-                      className="btn-outlined w-12 h-12 p-0 cursor-pointer"
+                      className="btn-outlined w-12 h-12 p-0 cursor-pointer hover:!bg-primary"
                       onClick={() => window.open(social.url, "_blank")}
                     >
                       {social.icon}
@@ -275,7 +330,7 @@ export default function ContactSection() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full btn-filled hover-lift"
+                  className="w-full btn-filled hover-lift cursor-pointer disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <>
