@@ -15,7 +15,7 @@ export default function Header() {
   const t = useTranslations("nav");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const ref = useClickAway(() => {
+  const ref = useClickAway<HTMLDivElement>(() => {
     setIsMenuOpen(false);
   });
   const navItems = [
