@@ -101,13 +101,13 @@ export default function HeroSection() {
             <div className="text-center">
               <div className="material-display-small text-primary mb-2">2+</div>
               <div className="material-body-medium text-muted-foreground">
-                {tAbout("experience")}
+                {tAbout("experience", { experience: "2+" })}
               </div>
             </div>
             <div className="text-center">
               <div className="material-display-small text-primary mb-2">9+</div>
               <div className="material-body-medium text-muted-foreground">
-                {tAbout("projects")}
+                {tAbout("projects", { projects: "9+" })}
               </div>
             </div>
             <div className="text-center">
@@ -115,7 +115,7 @@ export default function HeroSection() {
                 10+
               </div>
               <div className="material-body-medium text-muted-foreground">
-                {tAbout("clients")}
+                {tAbout("clients", { clients: "10+" })}
               </div>
             </div>
             <div className="text-center">

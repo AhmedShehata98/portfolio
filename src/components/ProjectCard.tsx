@@ -18,14 +18,14 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       {/* Project Image */}
-      <figure className="h-52 min-h-52 aspect-video bg-primary flex items-center justify-center text-6xl mb-5">
+      <figure className="h-52 min-h-52 aspect-video bg-primary flex items-center justify-center border-b text-6xl mb-5">
         <Image
           src={project.thumbnail}
           alt={project.title}
           objectFit="cover"
           width={500}
           height={300}
-          className="w-full h-full rounded-lg object-cover transition-all duration-300 group-hover:h-fit group-hover:scale-95"
+          className="w-full h-full object-cover transition-all duration-300 group-hover:h-fit group-hover:scale-95 hover:rounded-lg"
         />
       </figure>
 
@@ -60,6 +60,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               href={project.live_demo_url}
               target="_blank"
               rel="noopener noreferrer"
+              className="capitalize"
             >
               <Eye className="w-4 h-4 mr-2" />
               {t("liveDemo")}
@@ -75,6 +76,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               href={project.repo_url}
               target="_blank"
               rel="noopener noreferrer"
+              className="hover:text-gray-50 hover:bg-secondary"
             >
               <Github className="w-4 h-4" />
             </Link>

@@ -40,7 +40,7 @@ export default function ContactSection() {
     {
       icon: <Mail className="w-5 h-5" />,
       label: t("email"),
-      value: "hmedshehataq98@gmail.com",
+      value: "ahmedshehataq98@gmail.com",
       href: "mailto:hmedshehataq98@gmail.com",
     },
     {
@@ -53,7 +53,7 @@ export default function ContactSection() {
       icon: <MapPin className="w-5 h-5" />,
       label: t("location"),
       value: "Alexandria, Egypt",
-      href: "https://goo.gl/maps/Alexandria, Egypt",
+      href: "https://goo.gl/maps/Alexandria,Egypt",
     },
   ];
 
@@ -61,17 +61,17 @@ export default function ContactSection() {
     {
       icon: <Github className="w-5 h-5" />,
       label: "GitHub",
-      url: "https://github.com/ahmed-shehata",
+      url: "https://github.com/AhmedShehata98",
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
       label: "LinkedIn",
-      url: "https://linkedin.com/in/ahmed-shehata",
+      url: "https://www.linkedin.com/in/ahmedshehata98/",
     },
     {
       icon: <Twitter className="w-5 h-5" />,
       label: "Twitter",
-      url: "https://twitter.com/ahmed_shehata",
+      url: "https://x.com/Ahmed98Shehata",
     },
   ];
 
@@ -162,7 +162,7 @@ export default function ContactSection() {
                       key={social.label}
                       variant="outline"
                       size="sm"
-                      className="btn-outlined w-12 h-12 p-0"
+                      className="btn-outlined w-12 h-12 p-0 cursor-pointer"
                       onClick={() => window.open(social.url, "_blank")}
                     >
                       {social.icon}

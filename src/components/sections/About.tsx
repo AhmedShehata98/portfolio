@@ -97,15 +97,17 @@ export default function AboutSection() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <h3 className="material-headline-small mb-2 text-primary">
+                <h3 className="material-headline-medium mb-0 text-primary">
                   {t("name")}
                 </h3>
-                <p className="material-body-medium text-muted-foreground mb-2">
-                  {t("role")}
-                </p>
-                <p className="material-body-small text-muted-foreground">
-                  {t("location")}
-                </p>
+                <span>
+                  <p className="material-body-medium text-muted-foreground">
+                    {t("role")}
+                  </p>
+                  <p className="material-body-small text-muted-foreground">
+                    {t("location")}
+                  </p>
+                </span>
               </Card>
             </div>
           </div>

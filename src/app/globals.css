@@ -4,124 +4,133 @@
 /* Theme Tokens */
 
 :root {
-  --border: hsl(212, 25%, 88%);
-  --input: hsl(210 16% 92%);
-  --ring: hsl(210 16% 42%);
-  --background: hsl(195, 29%, 95%);
-  --foreground: hsl(222 47% 11%);
+  /* Base */
+  --border: hsl(210, 15%, 85%);
+  --input: hsl(210, 20%, 95%);
+  --ring: hsl(220, 60%, 55%);
+  --background: hsl(210, 25%, 98%);
+  --foreground: hsl(220, 40%, 10%);
 
-  --primary: hsl(164, 97%, 29%);
-  --primary-foreground: hsl(0 0% 100%);
-  --primary-variant: hsl(185, 96%, 28%);
-  --primary-container: hsl(165, 100%, 13%);
-  --primary-container-foreground: hsl(222 100% 90%);
+  /* Primary */
+  --primary: hsl(260, 80%, 45%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --primary-variant: hsl(260, 70%, 55%);
+  --primary-container: hsl(260, 90%, 95%);
+  --primary-container-foreground: hsl(260, 60%, 15%);
 
-  --secondary: hsl(290 60% 50%);
-  --secondary-foreground: hsl(0 0% 100%);
-  --secondary-container: hsl(290 60% 95%);
-  --secondary-container-foreground: hsl(290 60% 10%);
+  /* Secondary */
+  --secondary: hsl(330, 70%, 45%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --secondary-container: hsl(330, 70%, 95%);
+  --secondary-container-foreground: hsl(330, 60%, 15%);
 
-  --tertiary: hsl(45 100% 50%);
-  --tertiary-foreground: hsl(0 0% 100%);
-  --tertiary-container: hsl(45 100% 95%);
-  --tertiary-container-foreground: hsl(45 100% 10%);
+  /* Tertiary */
+  --tertiary: hsl(35, 90%, 50%);
+  --tertiary-foreground: hsl(0, 0%, 100%);
+  --tertiary-container: hsl(35, 90%, 95%);
+  --tertiary-container-foreground: hsl(35, 70%, 10%);
 
-  --surface: hsl(210 16% 98%);
-  --surface-variant: hsl(210 16% 90%);
-  --surface-container: hsl(210 16% 95%);
-  --surface-container-high: hsl(210 16% 92%);
-  --surface-container-highest: hsl(210 16% 89%);
-  --surface-dim: hsl(210 16% 80%);
-  --surface-bright: hsl(210 16% 99%);
+  /* Surfaces */
+  --surface: hsl(210, 20%, 99%);
+  --surface-variant: hsl(210, 15%, 90%);
+  --surface-container: hsl(210, 15%, 95%);
+  --surface-container-high: hsl(210, 15%, 92%);
+  --surface-container-highest: hsl(210, 15%, 89%);
+  --surface-dim: hsl(210, 15%, 80%);
+  --surface-bright: hsl(210, 15%, 99%);
 
-  --outline: hsl(210 16% 72%);
-  --outline-variant: hsl(210 16% 66%);
+  /* Outlines */
+  --outline: hsl(210, 10%, 60%);
+  --outline-variant: hsl(210, 10%, 50%);
 
-  --destructive: hsl(0 80% 50%);
-  --destructive-foreground: hsl(0 0% 100%);
+  /* Status Colors */
+  --destructive: hsl(0, 70%, 50%);
+  --destructive-foreground: hsl(0, 0%, 100%);
 
-  --muted: hsl(210 10% 60%);
-  --muted-foreground: hsl(210 10% 30%);
+  /* Muted / Accent */
+  --muted: hsl(210, 10%, 60%);
+  --muted-foreground: hsl(210, 10%, 30%);
 
-  --accent: hsl(180 60% 50%);
-  --accent-foreground: hsl(0 0% 100%);
+  --accent: hsl(180, 60%, 45%);
+  --accent-foreground: hsl(0, 0%, 100%);
 
-  --popover: hsl(0 0% 98%);
-  --popover-foreground: hsl(222 47% 11%);
+  /* Popovers / Cards / Sidebar */
+  --popover: hsl(210, 20%, 98%);
+  --popover-foreground: hsl(220, 40%, 10%);
 
-  --card: hsla(216, 100%, 99%, 0.7);
-  --card-foreground: hsl(222 47% 11%);
+  --card: hsla(0, 0%, 100%, 0.8);
+  --card-foreground: hsl(220, 40%, 10%);
 
-  --sidebar-background: hsl(222 47% 8%);
-  --sidebar-foreground: hsl(0 0% 100%);
-  --sidebar-primary: hsl(222 100% 50%);
-  --sidebar-primary-foreground: hsl(0 0% 100%);
-  --sidebar-accent: hsl(180 60% 50%);
-  --sidebar-accent-foreground: hsl(0 0% 100%);
-  --sidebar-border: hsl(222 47% 20%);
-  --sidebar-ring: hsl(222 47% 40%);
+  --sidebar-background: hsl(220, 40%, 8%);
+  --sidebar-foreground: hsl(0, 0%, 100%);
+  --sidebar-primary: hsl(260, 80%, 45%);
+  --sidebar-primary-foreground: hsl(0, 0%, 100%);
+  --sidebar-accent: hsl(180, 60%, 45%);
+  --sidebar-accent-foreground: hsl(0, 0%, 100%);
+  --sidebar-border: hsl(220, 40%, 20%);
+  --sidebar-ring: hsl(220, 40%, 40%);
 
   --radius: 0.5rem;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --border: hsl(210 10% 30%);
-    --input: hsl(210 10% 25%);
-    --ring: hsl(210 16% 55%);
-    --background: hsl(222 47% 5%);
-    --foreground: hsl(0 0% 98%);
+    --border: hsl(220, 10%, 30%);
+    --input: hsl(220, 10%, 25%);
+    --ring: hsl(260, 70%, 55%);
+    --background: hsl(220, 40%, 4%);
+    --foreground: hsl(0, 0%, 95%);
 
-    --primary: hsl(164, 34%, 44%);
-    --primary-foreground: hsl(0 0% 100%);
-    --primary-variant: hsl(185, 81%, 30%);
-    --primary-container: hsl(165, 100%, 13%);
-    --primary-container-foreground: hsl(222 100% 90%);
+    --primary: hsl(260, 80%, 60%);
+    --primary-foreground: hsl(0, 0%, 0%);
+    --primary-variant: hsl(260, 70%, 70%);
+    --primary-container: hsl(260, 80%, 30%);
+    --primary-container-foreground: hsl(0, 0%, 98%);
 
-    --secondary: hsl(290 60% 65%);
-    --secondary-foreground: hsl(0 0% 100%);
-    --secondary-container: hsl(290 60% 25%);
-    --secondary-container-foreground: hsl(290 60% 90%);
+    --secondary: hsl(330, 70%, 65%);
+    --secondary-foreground: hsl(0, 0%, 0%);
+    --secondary-container: hsl(330, 60%, 30%);
+    --secondary-container-foreground: hsl(0, 0%, 98%);
 
-    --tertiary: hsl(45 100% 65%);
-    --tertiary-foreground: hsl(0 0% 0%);
-    --tertiary-container: hsl(45 100% 25%);
-    --tertiary-container-foreground: hsl(45 100% 95%);
+    --tertiary: hsl(35, 90%, 65%);
+    --tertiary-foreground: hsl(0, 0%, 0%);
+    --tertiary-container: hsl(35, 80%, 30%);
+    --tertiary-container-foreground: hsl(35, 90%, 95%);
 
-    --surface: hsl(222 20% 10%);
-    --surface-variant: hsl(222 20% 15%);
-    --surface-container: hsl(222 20% 12%);
-    --surface-container-high: hsl(222 20% 17%);
-    --surface-container-highest: hsl(222 20% 22%);
-    --surface-dim: hsl(222 20% 5%);
-    --surface-bright: hsl(222 20% 20%);
+    --surface: hsl(220, 25%, 8%);
+    --surface-variant: hsl(220, 20%, 12%);
+    --surface-container: hsl(220, 20%, 10%);
+    --surface-container-high: hsl(220, 20%, 15%);
+    --surface-container-highest: hsl(220, 20%, 20%);
+    --surface-dim: hsl(220, 20%, 5%);
+    --surface-bright: hsl(220, 20%, 25%);
 
-    --outline: hsl(222 15% 40%);
-    --outline-variant: hsl(222 15% 35%);
+    --outline: hsl(220, 15%, 40%);
+    --outline-variant: hsl(220, 15%, 35%);
 
-    --destructive: hsl(0 80% 60%);
-    --destructive-foreground: hsl(0 0% 100%);
+    --destructive: hsl(0, 70%, 60%);
+    --destructive-foreground: hsl(0, 0%, 100%);
 
-    --muted: hsl(210 10% 40%);
-    --muted-foreground: hsl(210 10% 65%);
+    --muted: hsl(210, 10%, 40%);
+    --muted-foreground: hsl(210, 10%, 65%);
 
-    --accent: hsl(180 60% 60%);
-    --accent-foreground: hsl(0 0% 0%);
+    --accent: hsl(180, 60%, 55%);
+    --accent-foreground: hsl(0, 0%, 0%);
 
-    --popover: hsl(222 30% 15%);
-    --popover-foreground: hsl(0 0% 98%);
+    --popover: hsl(220, 20%, 12%);
+    --popover-foreground: hsl(0, 0%, 95%);
 
-    --card: hsla(224, 29%, 10%, 0.7);
-    --card-foreground: hsl(0 0% 98%);
+    --card: hsla(220, 25%, 10%, 0.8);
+    --card-foreground: hsl(0, 0%, 98%);
 
-    --sidebar-background: hsl(222 47% 4%);
-    --sidebar-foreground: hsl(0 0% 100%);
-    --sidebar-primary: hsl(222 100% 65%);
-    --sidebar-primary-foreground: hsl(0 0% 100%);
-    --sidebar-accent: hsl(180 60% 60%);
-    --sidebar-accent-foreground: hsl(0 0% 0%);
-    --sidebar-border: hsl(222 47% 15%);
-    --sidebar-ring: hsl(222 47% 35%);
+    --sidebar-background: hsl(220, 40%, 4%);
+    --sidebar-foreground: hsl(0, 0%, 100%);
+    --sidebar-primary: hsl(260, 80%, 65%);
+    --sidebar-primary-foreground: hsl(0, 0%, 0%);
+    --sidebar-accent: hsl(180, 60%, 55%);
+    --sidebar-accent-foreground: hsl(0, 0%, 0%);
+    --sidebar-border: hsl(220, 40%, 15%);
+    --sidebar-ring: hsl(220, 40%, 35%);
 
     --radius: 0.5rem;
   }
@@ -174,7 +183,7 @@
     @apply bg-background/80 backdrop-blur-md border border-white/20 shadow-lg rounded-lg;
   }
   .text-gradient-primary {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container;
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary;
   }
   .material-label-small {
     @apply text-[10px] leading-[14px] font-medium tracking-[0.0455em] sm:text-[11px] sm:leading-[16px];

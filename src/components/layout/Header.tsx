@@ -9,13 +9,15 @@ import { Button } from "@/components/ui/button";
 import LanguageToggle from "@/components/LanguageToggle";
 import ThemeToggle from "@/components/ThemeToggle";
 import useActiveHash from "@/hook/useActiveHash";
+import { useClickAway } from "@uidotdev/usehooks";
 
 export default function Header() {
   const t = useTranslations("nav");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const MobileNavigationMenuRef = React.useRef<HTMLDivElement>(null);
-
+  const ref = useClickAway(() => {
+    setIsMenuOpen(false);
+  });
   const navItems = [
     { href: "/#", label: t("home") },
     { href: "#about", label: t("about") },
@@ -37,23 +39,6 @@ export default function Header() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    window.addEventListener("click", (e) => {
-      console.log((e.target as HTMLElement).id);
-      if ((e.target as HTMLElement).id === "mobile-menu-button") {
-        setIsMenuOpen((prev) => !prev);
-        return;
-      }
-      if (
-        MobileNavigationMenuRef.current &&
-        !MobileNavigationMenuRef.current.contains(e.target as Node)
-      ) {
-        setIsMenuOpen(false);
-      }
-    });
   }, []);
 
   return (
@@ -118,7 +103,7 @@ export default function Header() {
           {/* Mobile Navigation */}
           {isMenuOpen && (
             <div
-              ref={MobileNavigationMenuRef}
+              ref={ref}
               className="md:hidden mt-4 p-4 glass-surface rounded-lg border border-outline-variant animate-fade-in-scale"
             >
               <div className="flex flex-col space-y-4">
