@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   description:
     "Passionate frontend developer specializing in modern web technologies and creating exceptional user experiences",
   colorScheme: "dark light",
+  applicationName: "Ahmed Shehata | Portfolio",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#5417cf" },
     { media: "(prefers-color-scheme: dark)", color: "#7e47eb" },
@@ -58,9 +59,14 @@ export const metadata: Metadata = {
     description:
       "Passionate frontend developer specializing in modern web technologies and creating exceptional user experiences",
     url: "https://ahmedshehata.online",
+    type: "website",
+    siteName: "Ahmed Shehata | Portfolio",
+    locale: "ar",
+    alternateLocale: "en",
+    countryName: "Egypt",
     images: [
       {
-        url: "/profile-photo.png",
+        url: "/website-seo-image.webp",
         width: 375,
         height: 468,
         alt: "ahmed-shehata-profile-img.png",
@@ -73,9 +79,10 @@ export const metadata: Metadata = {
     title: "Ahmed Shehata | Portfolio",
     description:
       "Passionate frontend developer specializing in modern web technologies and creating exceptional user experiences",
+    creator: "Ahmed Shehata",
     images: [
       {
-        url: "/profile-photo.png",
+        url: "/website-seo-image.webp",
         width: 375,
         height: 468,
         alt: "ahmed-shehata-profile-img.png",
@@ -91,6 +98,7 @@ export const metadata: Metadata = {
     follow: true,
     nocache: false,
   },
+  creator: "Ahmed Shehata",
 };
 
 export default function HomePage({
