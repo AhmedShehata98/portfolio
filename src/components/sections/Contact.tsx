@@ -26,9 +26,12 @@ import {
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { toast } from "sonner";
+import Turnstile from "react-turnstile";
+import { adminTemplate, clientEmailTemplate } from "@/app/utils/templates";
 
 export default function ContactSection() {
   const t = useTranslations("contact");
+  const tTemplate = useTranslations();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -36,6 +39,7 @@ export default function ContactSection() {
     service: "",
     message: "",
   });
+  const [verifiedCaptcha, setVerifiedCaptcha] = useState(false);
 
   const contactInfo = [
     {
@@ -87,6 +91,31 @@ export default function ContactSection() {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
+  const sendEmail = async ({
+    to,
+    subject,
+    html,
+  }: {
+    to: string;
+    subject: string;
+    html: string;
+  }) => {
+    const res = await fetch("/api/send-mail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ to, subject, html }),
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      throw new Error(errorData.error);
+    }
+
+    return res.json();
+  };
+
   const sendContactForm = async ({
     formData,
     cb,
@@ -130,6 +159,27 @@ export default function ContactSection() {
     }
   };
 
+  const handleVerifyCaptcha = async (token: string) => {
+    try {
+      const res = await fetch("/api/turnstile/verify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setVerifiedCaptcha(true);
+      } else {
+        setVerifiedCaptcha(false);
+      }
+    } catch (error) {
+      console.error("Error verifying captcha:", error);
+      setVerifiedCaptcha(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -141,7 +191,28 @@ export default function ContactSection() {
         cb: async (success, error) => {
           if (success) {
             toast.success(t("form.success"));
-
+            Promise.all([
+              sendEmail({
+                to: process.env.NEXT_PUBLIC_EMAIL as string,
+                subject: t("form.subject", { name: formData.name }),
+                html: adminTemplate({
+                  t: tTemplate,
+                  name: formData.name,
+                  email: formData.email,
+                  service: formData.service,
+                  message: formData.message,
+                }),
+              }),
+              sendEmail({
+                to: formData.email,
+                subject: t("form.subject", { name: formData.name }),
+                html: clientEmailTemplate({
+                  t: tTemplate,
+                  name: formData.name,
+                  service: formData.service,
+                }),
+              }),
+            ]);
             setFormData({
               name: "",
               email: "",
@@ -326,10 +397,18 @@ export default function ContactSection() {
                   />
                 </div>
 
+                <Turnstile
+                  className="place-self-center md:place-self-start"
+                  sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                  onVerify={handleVerifyCaptcha}
+                  onExpire={() => setVerifiedCaptcha(false)}
+                  onError={() => setVerifiedCaptcha(false)}
+                  onTimeout={() => setVerifiedCaptcha(false)}
+                />
                 {/* Submit Button */}
                 <Button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !verifiedCaptcha}
                   className="w-full btn-filled hover-lift cursor-pointer disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (

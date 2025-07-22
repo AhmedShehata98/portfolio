@@ -122,6 +122,23 @@
       "location": "Alexandria, Egypt"
     }
   },
+  "template": {
+    "clientReceiveMail": {
+      "heading": "You have received a new message ahmed shehata portfolio",
+      "title": "Thank you for requesting a service",
+      "message": "Your request has been received successfully. We appreciate your interest and trust in our services. We will review your request details and contact you soon.",
+      "btn": "Contact Us"
+    },
+    "adminNotifyMail": {
+      "heading": "New message from contact form",
+      "title": "Request Details:",
+      "nameLabel": "Name:",
+      "emailLabel": "Email:",
+      "serviceLabel": "Requested Service:",
+      "messageLabel": "Message:",
+      "btn": "Reply to Client"
+    }
+  },
   "footer": {
     "rights": "All rights reserved.",
     "social": "Follow me on social media",
