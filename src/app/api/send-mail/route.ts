@@ -14,15 +14,6 @@ export async function POST(req: Request) {
       );
     }
 
-    console.log({
-      host: process.env.EMAIL_HOST,
-      port: 587, // or 587 (TLS)
-      secure: false, // true for port 465
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: 587, // or 587 (TLS)
