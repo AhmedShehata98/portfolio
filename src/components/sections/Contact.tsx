@@ -45,8 +45,8 @@ export default function ContactSection() {
     {
       icon: <Mail className="w-5 h-5" />,
       label: t("email"),
-      value: "ahmedshehataq98@gmail.com",
-      href: "mailto:hmedshehataq98@gmail.com",
+      value: "contact@ahmedshehata.online",
+      href: "mailto:contact@ahmedshehata.online",
     },
     {
       icon: <Phone className="w-5 h-5" />,

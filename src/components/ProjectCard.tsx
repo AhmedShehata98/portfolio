@@ -14,11 +14,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <Card
       key={project.id}
-      className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border border-gray-200 dark:border-gray-700 py-6 shadow-sm group pt-0 overflow-hidden animate-fade-in-up"
+      className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border border-gray-200 dark:border-gray-800 py-6 shadow-sm group pt-0 overflow-hidden animate-fade-in-up"
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       {/* Project Image */}
-      <figure className="h-52 min-h-52 aspect-video bg-primary flex items-center justify-center border-b text-6xl mb-5">
+      <figure className="h-5 min-h-60 aspect-video bg-primary flex items-center justify-center border-b text-6xl mb-5 overflow-hidden">
         <Image
           src={project.thumbnail}
           alt={project.title}
@@ -31,11 +31,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
       {/* Project Content */}
       <div className="h-full px-5 flex flex-col justify-between items-start">
-        <h3 className="text-xl font-medium tracking-normal leading-snug mb-2 text-primary">
+        <h3 className="text-xl font-medium text-start tracking-normal leading-snug mb-2 text-primary">
           {project.title}
         </h3>
         {project.description && (
-          <p className="text-base font-normal tracking-normal leading-relaxed text-muted-foreground mb-4 line-clamp-2">
+          <p className="text-base font-normal text-start tracking-normal leading-relaxed text-muted-foreground mb-4 line-clamp-2">
             {project.description}
           </p>
         )}

@@ -77,17 +77,17 @@
   :root {
     --border: hsl(220, 10%, 30%);
     --input: hsl(220, 10%, 25%);
-    --ring: hsl(260, 70%, 55%);
+    --ring: hsl(260, 45%, 46%);
     --background: hsl(220, 40%, 4%);
     --foreground: hsl(0, 0%, 95%);
 
-    --primary: hsl(260, 80%, 60%);
+    --primary: hsl(260, 63%, 73%);
     --primary-foreground: hsl(0, 0%, 0%);
     --primary-variant: hsl(260, 70%, 70%);
     --primary-container: hsl(260, 80%, 30%);
     --primary-container-foreground: hsl(0, 0%, 98%);
 
-    --secondary: hsl(330, 70%, 65%);
+    --secondary: hsl(330, 89%, 79%);
     --secondary-foreground: hsl(0, 0%, 0%);
     --secondary-container: hsl(330, 60%, 30%);
     --secondary-container-foreground: hsl(0, 0%, 98%);
@@ -120,7 +120,7 @@
     --popover: hsl(220, 20%, 12%);
     --popover-foreground: hsl(0, 0%, 95%);
 
-    --card: hsla(220, 25%, 10%, 0.8);
+    --card: hsla(213, 96%, 10%, 0.8);
     --card-foreground: hsl(0, 0%, 98%);
 
     --sidebar-background: hsl(220, 40%, 4%);

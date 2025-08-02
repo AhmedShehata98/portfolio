@@ -1,12 +1,14 @@
-import { ArrowRight, MapPin } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { ArrowRight, MapPin, Send } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 import { Button } from "../ui/button";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
+import CvMenuButton from "../ui/CvMenuButton";
 
 export default function HeroSection() {
   const tHero = useTranslations("hero");
   const tAbout = useTranslations("about");
+
   return (
     <section className="app-container pt-20 min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-hero">
       {/* Animated Background */}
@@ -21,11 +23,11 @@ export default function HeroSection() {
           {/* Profile Photo */}
           <div className="mb-8 animate-fade-in-up">
             <Image
-              src={"/profile-photo.png"}
+              src={"/website-seo-image.webp"}
               alt="Ahmed Shehata"
-              width={128}
-              height={128}
-              className="w-32 h-32 rounded-full mx-auto border-4 border-primary shadow-lg object-cover"
+              width={320}
+              height={320}
+              className="size-60 rounded-full mx-auto border-4 border-primary shadow-lg object-cover"
             />
           </div>
 
@@ -84,15 +86,25 @@ export default function HeroSection() {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up stagger-6">
-            <Button asChild className="btn-filled hover-lift min-w-48">
+            {/* <Button asChild className="btn-filled hover-lift min-w-48">
               <Link href="/#gallery">
                 {tHero("cta")}
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight
+                  className={`ml-2 h-5 w-5 ${
+                    locale === "ar" ? "rotate-180" : ""
+                  }`}
+                />
               </Link>
-            </Button>
-
+            </Button> */}
+            <CvMenuButton />
             <Button asChild className="btn-outlined hover-lift min-w-48">
-              <Link href="/#contact">{tHero("contact")}</Link>
+              <Link
+                href="/#contact"
+                className="flex items-center justify-center gap-3"
+              >
+                <Send className="size-5" />
+                {tHero("contact")}
+              </Link>
             </Button>
           </div>
 

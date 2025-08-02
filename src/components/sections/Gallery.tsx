@@ -1,109 +1,90 @@
 "use client";
 
-import React, { use, useEffect, useState } from "react";
-import { Github, Eye } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { LayoutTemplate } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/app/utils/supabase";
 import ProjectCard from "../ProjectCard";
 import { Project } from "@/types/gallery";
+import { ProjectCategories } from "@/types/projects";
 
 export default function GallerySection() {
   const t = useTranslations("gallery");
-  const [activeFilter, setActiveFilter] = useState("all");
+  const [categoryList, setCategoryList] = useState<ProjectCategories[]>([]);
+  const [activeFilter, setActiveFilter] = useState<ProjectCategories | null>(
+    null
+  );
   const [loading, setLoading] = useState(true);
+  const [loadingFilters, setLoadingFilter] = useState(true);
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
+    const fetchProjectCategory = async () => {
+      try {
+        setLoadingFilter(true);
+        const { data, error } = await supabase
+          .from("project_category")
+          .select("*");
+        if (error) {
+          return;
+        }
+        setLoadingFilter(false);
+        setCategoryList(data);
+        setActiveFilter(data.find((category) => category.name === "all"));
+      } catch (error) {
+        console.log("Error while fetching projects category: ", error);
+        setLoadingFilter(false);
+        setCategoryList([]);
+      }
+    };
+    fetchProjectCategory();
+  }, []);
+
+  useEffect(() => {
     const fetchProjects = async () => {
-      const { data, error } = await supabase.from("projects").select("*");
-      if (error) {
-        console.error("Error fetching projects:", error);
+      try {
+        setLoading(true);
+
+        const projectsQuery = supabase
+          .from("projects")
+          .select(
+            `
+          id,
+          thumbnail,
+          title,
+          description,
+          tech_stack,
+          live_demo_url,
+          repo_url,
+          category_id (
+            id,
+            name
+          )
+        `
+          )
+          .order("created_at", { ascending: false });
+
+        if (activeFilter && activeFilter?.name !== "all") {
+          projectsQuery.eq("category_id", activeFilter.id);
+        }
+
+        const { data, error } = await projectsQuery;
+
+        if (error) {
+          throw error;
+        }
+
         setLoading(false);
-        return;
-      } else {
         setProjects(data);
+      } catch (error) {
+        console.log("error while fetch projects: ", error);
         setLoading(false);
+        setProjects([]);
       }
     };
     fetchProjects();
-  }, []);
-
-  // const projects = [
-  //   {
-  //     id: 1,
-  //     title: "E-Commerce Platform",
-  //     description: "A modern e-commerce platform built with React and Node.js",
-  //     category: "web",
-  //     technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-  //     image: "🛍️",
-  //     liveUrl: "#",
-  //     githubUrl: "#",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Mobile Banking App",
-  //     description:
-  //       "Secure mobile banking application with biometric authentication",
-  //     category: "mobile",
-  //     technologies: ["React Native", "Firebase", "Biometric", "Redux"],
-  //     image: "💳",
-  //     liveUrl: "#",
-  //     githubUrl: "#",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Dashboard Design System",
-  //     description: "Comprehensive design system for admin dashboards",
-  //     category: "design",
-  //     technologies: ["Figma", "Design Tokens", "Storybook", "React"],
-  //     image: "📊",
-  //     liveUrl: "#",
-  //     githubUrl: "#",
-  //   },
-  //   {
-  //     id: 4,
-  //     title: "Task Management App",
-  //     description: "Collaborative task management tool with real-time updates",
-  //     category: "web",
-  //     technologies: ["Vue.js", "Socket.io", "PostgreSQL", "Docker"],
-  //     image: "📝",
-  //     liveUrl: "#",
-  //     githubUrl: "#",
-  //   },
-  //   {
-  //     id: 5,
-  //     title: "Food Delivery App",
-  //     description: "On-demand food delivery mobile application",
-  //     category: "mobile",
-  //     technologies: ["Flutter", "Firebase", "Google Maps", "Payment"],
-  //     image: "🍔",
-  //     liveUrl: "#",
-  //     githubUrl: "#",
-  //   },
-  //   {
-  //     id: 6,
-  //     title: "Brand Identity Package",
-  //     description: "Complete brand identity design for tech startup",
-  //     category: "design",
-  //     technologies: ["Illustrator", "Photoshop", "Brand Guidelines", "Logo"],
-  //     image: "🎨",
-  //     liveUrl: "#",
-  //     githubUrl: "#",
-  //   },
-  // ];
-
-  const filters = [
-    { id: "all", label: t("filter.all") },
-    { id: "web", label: t("filter.web") },
-    { id: "mobile", label: t("filter.mobile") },
-    { id: "design", label: t("filter.design") },
-  ];
-
-  // const filteredProjects =
-  //   activeFilter === "all"
-  //     ? projects
-  //     : projects.filter((project) => project.category === activeFilter);
+  }, [activeFilter]);
 
   return (
     <section id="gallery" className="app-container py-20 bg-background">
@@ -121,17 +102,33 @@ export default function GallerySection() {
 
           {/* Filter Buttons */}
           <div className="flex flex-wrap justify-center gap-4 mb-12 animate-fade-in-up stagger-2">
-            {filters.map((filter) => (
-              <Button
-                key={filter.id}
-                onClick={() => setActiveFilter(filter.id)}
-                className={`px-6 py-2 rounded-full transition-all duration-300 ${
-                  activeFilter === filter.id ? "btn-filled" : "btn-outlined"
-                }`}
-              >
-                {filter.label}
-              </Button>
-            ))}
+            {loadingFilters && (
+              <>
+                <span className="flex items-center justify-center w-30 h-10 bg-card rounded-full animate-pulse">
+                  <span className="inline-block h-1/3 w-1/2 bg-primary rounded-lg animate-pulse"></span>
+                </span>
+                <span className="flex items-center justify-center w-20 h-10 bg-card rounded-full animate-pulse">
+                  <span className="inline-block h-1/3 w-1/2 bg-primary rounded-lg animate-pulse"></span>
+                </span>
+                <span className="flex items-center justify-center w-24 h-10 bg-card rounded-full animate-pulse">
+                  <span className="inline-block h-1/3 w-1/2 bg-primary rounded-lg animate-pulse"></span>
+                </span>
+              </>
+            )}
+            {!loadingFilters &&
+              categoryList?.map((filter) => (
+                <Button
+                  key={filter.id}
+                  onClick={() => setActiveFilter(filter)}
+                  className={`px-6 py-2 rounded-full transition-all cursor-pointer duration-300 hover:bg-primary/20 ${
+                    activeFilter?.id === filter.id
+                      ? "bg-primary"
+                      : "bg-transparent text-primary"
+                  }`}
+                >
+                  {t(`filter.${filter.name}`)}
+                </Button>
+              ))}
           </div>
 
           {/* Projects Grid */}
@@ -176,12 +173,21 @@ export default function GallerySection() {
                 </div>
               </>
             )}
-            {!loading && projects && projects.length > 0 ? (
+            {!loading &&
+              projects &&
+              projects.length > 0 &&
               projects.map((project, index) => (
                 <ProjectCard key={project.id} project={project} index={index} />
-              ))
-            ) : (
-              <p>{t("no_projects")}</p>
+              ))}
+            {!loading && (!projects || projects.length < 1) && (
+              <span className="w-full flex items-center justify-center flex-col gap-5 col-span-3 pt-16">
+                <span className="flex items-center justify-center shadow-sm text-red-900 bg-red-100 p-6 rounded-full">
+                  <LayoutTemplate />
+                </span>
+                <p className="text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-500 font-medium">
+                  {t("no_projects")}
+                </p>
+              </span>
             )}
           </div>
         </div>

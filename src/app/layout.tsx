@@ -20,6 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl">
+      <div id="modal"></div>
       <body
         className={`${latoSans.variable} ${cairoMono.variable} antialiased`}
       >

@@ -12,6 +12,11 @@
     "location": "Alexandria, Egypt",
     "description": "Passionate frontend developer specializing in modern web technologies and creating exceptional user experiences",
     "cta": "Explore My Work",
+    "cv": {
+      "title": "my cv",
+      "download": "download file",
+      "view": "preview file"
+    },
     "contact": "Get In Touch",
     "techStack": "Tech Stack"
   },
@@ -117,7 +122,7 @@
       "social": "Follow me on social media"
     },
     "info": {
-      "email": "ahmed.shehata@example.com",
+      "email": "contact@ahmedshehata.online",
       "phone": "+20 123 456 7890",
       "location": "Alexandria, Egypt"
     }
