@@ -57,6 +57,7 @@ export default function GallerySection() {
           tech_stack,
           live_demo_url,
           repo_url,
+          created_at,
           category_id (
             id,
             name
@@ -73,6 +74,9 @@ export default function GallerySection() {
 
         if (error) {
           throw error;
+        }
+        if (!data) {
+          throw new Error("projects not found");
         }
 
         setLoading(false);

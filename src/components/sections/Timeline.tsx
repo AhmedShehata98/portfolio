@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
-import { Calendar, MapPin, GraduationCap, Briefcase } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { useTranslations } from "next-intl";
 import { supabase } from "@/app/utils/supabase";
 import { WorkExperience } from "@/types/timeline";

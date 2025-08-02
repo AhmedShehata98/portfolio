@@ -1,11 +1,14 @@
 export type Project = {
-  category_id: number;
-  created_at: string; // ISO 8601 date string
+  category_id: {
+    id: number;
+    name: string;
+  }[];
+  created_at?: string;
   description: string;
   id: number;
   live_demo_url: string;
   repo_url: string;
-  tech_stack: string; // comma-separated string
-  thumbnail: string; // URL to image
+  tech_stack: string;
+  thumbnail: string;
   title: string;
 };

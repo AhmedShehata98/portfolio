@@ -1,8 +1,6 @@
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function useActiveHash() {
-  const router = useRouter();
   const [activeHash, setActiveHash] = useState("");
 
   useEffect(() => {

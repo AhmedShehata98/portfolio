@@ -1,5 +1,5 @@
-import { ArrowRight, MapPin, Send } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
+import { MapPin, Send } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Button } from "../ui/button";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
