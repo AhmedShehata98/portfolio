@@ -97,17 +97,20 @@ export const metadata: Metadata = {
 
 export default function HomePage({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{ "project-category": string }>;
 }) {
   const { locale } = use(params);
+  const { "project-category": projectCategory } = use(searchParams);
   setRequestLocale(locale || routing.defaultLocale);
 
   return (
     <main className="relative w-full min-h-screen flex flex-col items-center justify-center">
       <HeroSection />
       <AboutSection />
-      <GallerySection />
+      <GallerySection projectCategory={projectCategory} />
       <TimelineSection />
       <ContactSection />
       <GoTopBtn />

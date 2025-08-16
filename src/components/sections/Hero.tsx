@@ -86,16 +86,6 @@ export default function HeroSection() {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up stagger-6">
-            {/* <Button asChild className="btn-filled hover-lift min-w-48">
-              <Link href="/#gallery">
-                {tHero("cta")}
-                <ArrowRight
-                  className={`ml-2 h-5 w-5 ${
-                    locale === "ar" ? "rotate-180" : ""
-                  }`}
-                />
-              </Link>
-            </Button> */}
             <CvMenuButton />
             <Button asChild className="btn-outlined hover-lift min-w-48">
               <Link
