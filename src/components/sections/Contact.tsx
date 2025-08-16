@@ -1,15 +1,5 @@
-"use client";
-
-import React, { useState } from "react";
-import {
-  Send,
-  Mail,
-  Phone,
-  MapPin,
-  Github,
-  Linkedin,
-  Twitter,
-} from "lucide-react";
+import React from "react";
+import { Mail, Phone, MapPin, Github, Linkedin, Twitter } from "lucide-react";
 
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -25,21 +15,11 @@ import {
 } from "@/components/ui/select";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { toast } from "sonner";
-import Turnstile from "react-turnstile";
-import { adminTemplate, clientEmailTemplate } from "@/app/utils/templates";
+import { contactFormAction } from "@/lib/actions";
+import ContactFormActions from "../ContactFormActions";
 
 export default function ContactSection() {
   const t = useTranslations("contact");
-  const tTemplate = useTranslations();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    service: "",
-    message: "",
-  });
-  const [verifiedCaptcha, setVerifiedCaptcha] = useState(false);
 
   const contactInfo = [
     {
@@ -87,156 +67,6 @@ export default function ContactSection() {
     { value: "consulting", label: t("services.consulting") },
   ];
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const sendEmail = async ({
-    to,
-    subject,
-    html,
-  }: {
-    to: string;
-    subject: string;
-    html: string;
-  }) => {
-    const res = await fetch("/api/send-mail", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ to, subject, html }),
-    });
-
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.error);
-    }
-
-    return res.json();
-  };
-
-  const sendContactForm = async ({
-    formData,
-    cb,
-  }: {
-    formData: {
-      name: string;
-      email: string;
-      service: string;
-      message: string;
-    };
-    cb: (success: boolean, error?: unknown) => void;
-  }) => {
-    try {
-      const res = await fetch("/api/contact-us", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          service: formData.service,
-          message: formData.message,
-        }),
-      });
-      if (!res.ok) {
-        const errorData = await res.json();
-        const parsedError = JSON.parse(errorData.error);
-        cb(false, parsedError?.[0]?.message);
-        return;
-      }
-      const data = await res.json();
-      if (data.success) {
-        cb(true);
-      } else {
-        cb(false, data.error);
-      }
-    } catch (error) {
-      console.error("Error sending contact form:", error);
-      cb(false, error);
-    }
-  };
-
-  const handleVerifyCaptcha = async (token: string) => {
-    try {
-      const res = await fetch("/api/turnstile/verify", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setVerifiedCaptcha(true);
-      } else {
-        setVerifiedCaptcha(false);
-      }
-    } catch (error) {
-      console.error("Error verifying captcha:", error);
-      setVerifiedCaptcha(false);
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      setIsSubmitting(true);
-      await sendContactForm({
-        formData,
-        cb: async (success, error) => {
-          if (success) {
-            toast.success(t("form.success"));
-            Promise.all([
-              sendEmail({
-                to: process.env.NEXT_PUBLIC_EMAIL as string,
-                subject: t("form.subject", { name: formData.name }),
-                html: adminTemplate({
-                  t: tTemplate,
-                  name: formData.name,
-                  email: formData.email,
-                  service: formData.service,
-                  message: formData.message,
-                }),
-              }),
-              sendEmail({
-                to: formData.email,
-                subject: t("form.subject", { name: formData.name }),
-                html: clientEmailTemplate({
-                  t: tTemplate,
-                  name: formData.name,
-                  service: formData.service,
-                }),
-              }),
-            ]);
-            setFormData({
-              name: "",
-              email: "",
-              service: "",
-              message: "",
-            });
-          } else {
-            toast.error(
-              error && typeof error === "string" ? error : t("form.error")
-            );
-          }
-        },
-      });
-      setIsSubmitting(false);
-
-      setFormData({ name: "", email: "", service: "", message: "" });
-    } catch (error) {
-      console.error("Error submitting contact form:", error);
-      toast.error(t("form.error"));
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <section id="contact" className="app-container py-20 bg-background">
       <div>
@@ -283,15 +113,17 @@ export default function ContactSection() {
                   {t("footer.social")}
                 </h3>
                 <div className="flex gap-4 max-md:justify-center">
-                  {socialLinks.map((social) => (
+                  {socialLinks.map((social, idx) => (
                     <Button
-                      key={social.label}
+                      key={`${social.label}_${idx}`}
                       variant="outline"
                       size="sm"
                       className="btn-outlined w-12 h-12 p-0 cursor-pointer hover:!bg-primary"
-                      onClick={() => window.open(social.url, "_blank")}
+                      asChild
                     >
-                      {social.icon}
+                      <Link href={social.url} target="_blank">
+                        {social.icon}
+                      </Link>
                     </Button>
                   ))}
                 </div>
@@ -310,7 +142,7 @@ export default function ContactSection() {
 
             {/* Contact Form */}
             <Card className="card-elevated animate-fade-in-up stagger-3">
-              <form onSubmit={handleSubmit} className="p-8 space-y-6">
+              <form action={contactFormAction} className="p-8 space-y-6">
                 {/* Name */}
                 <div className="space-y-2">
                   <Label
@@ -322,8 +154,7 @@ export default function ContactSection() {
                   <Input
                     id="name"
                     type="text"
-                    value={formData.name}
-                    onChange={(e) => handleInputChange("name", e.target.value)}
+                    name="fullName"
                     required
                     className="w-full"
                     placeholder="John Doe"
@@ -341,8 +172,7 @@ export default function ContactSection() {
                   <Input
                     id="email"
                     type="email"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange("email", e.target.value)}
+                    name="email"
                     required
                     className="w-full"
                     placeholder="john@example.com"
@@ -357,12 +187,7 @@ export default function ContactSection() {
                   >
                     {t("form.service")}
                   </Label>
-                  <Select
-                    value={formData.service}
-                    onValueChange={(value) =>
-                      handleInputChange("service", value)
-                    }
-                  >
+                  <Select name="service">
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select a service" />
                     </SelectTrigger>
@@ -386,43 +211,14 @@ export default function ContactSection() {
                   </Label>
                   <Textarea
                     id="message"
-                    value={formData.message}
-                    onChange={(e) =>
-                      handleInputChange("message", e.target.value)
-                    }
+                    name="message"
                     required
                     rows={5}
                     className="w-full resize-none"
                     placeholder="Tell me about your project..."
                   />
                 </div>
-
-                <Turnstile
-                  className="place-self-center md:place-self-start"
-                  sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
-                  onVerify={handleVerifyCaptcha}
-                  onExpire={() => setVerifiedCaptcha(false)}
-                  onError={() => setVerifiedCaptcha(false)}
-                  onTimeout={() => setVerifiedCaptcha(false)}
-                />
-                {/* Submit Button */}
-                <Button
-                  type="submit"
-                  disabled={isSubmitting || !verifiedCaptcha}
-                  className="w-full btn-filled hover-lift cursor-pointer disabled:cursor-not-allowed"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <div className="animate-spin rounded-full h-5 w-5 border-2 border-primary-foreground border-t-transparent mr-2"></div>
-                      {t("form.sending")}
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-5 h-5 mr-2" />
-                      {t("form.send")}
-                    </>
-                  )}
-                </Button>
+                <ContactFormActions />
               </form>
             </Card>
           </div>

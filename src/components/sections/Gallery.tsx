@@ -51,11 +51,10 @@ export default function GallerySection({
                   }}
                   className={clsx(
                     "px-6 py-2 rounded-full transition-all cursor-pointer duration-300 capitalize hover:bg-primary/20",
-                    projectCategory === filter.name
+                    projectCategory === filter.name ||
+                      (!projectCategory && filter.name === "all")
                       ? "bg-primary text-primary-container font-semibold"
-                      : "bg-transparent text-primary",
-                    !projectCategory &&
-                      "bg-primary text-primary-container font-semibold"
+                      : "bg-transparent text-primary"
                   )}
                 >
                   {t(`filter.${filter.name}`)}
