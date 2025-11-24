@@ -37,11 +37,6 @@ export default function GallerySection({
 
           {/* Filter Buttons */}
           <div className="flex flex-wrap justify-center gap-4 mb-12 animate-fade-in-up stagger-2">
-            {/* {loadingFilters && (
-              <>
-                <FilterSkeleton/>
-              </>
-            )} */}
             <Suspense fallback={<FilterSkeleton />}>
               {categoryList?.map((filter) => (
                 <Link
